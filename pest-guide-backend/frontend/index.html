@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pictorial Guide to Insects, Pests & Diseases</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-badge">NAREI • Guyana • 2019</div>
+  <h1 class="hero-title">
+    A Pictorial Guide to<br><em>Insects, Pests</em><br>&amp; Diseases
+  </h1>
+  <p class="hero-subtitle">
+    A reference for farmers and agricultural stakeholders on identifying and managing common plant health challenges across tropical crops.
+  </p>
+  <div class="hero-meta">
+    <div class="hero-stat">
+      <span class="hero-stat-num">11</span>
+      <span class="hero-stat-label">Fungal</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">4</span>
+      <span class="hero-stat-label">Bacterial</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">16</span>
+      <span class="hero-stat-label">Insects</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">4</span>
+      <span class="hero-stat-label">Disorders</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>EXPLORE</span>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <div class="intro-block">
+    <div class="intro-block-title">Purpose</div>
+    <div class="intro-block-text">Compiled from plant samples submitted to the Plant Pathology, Entomology &amp; Weed Science Department. Assists in identification and management of common agricultural problems.</div>
+  </div>
+  <div class="intro-block">
+    <div class="intro-block-title">Scope</div>
+    <div class="intro-block-text">Covers fungal, bacterial, viral, protozoal diseases; nematodes; physiological disorders; and insect pests affecting major crops including plantain, cassava, coconut, pineapple, tomato, and more.</div>
+  </div>
+  <div class="intro-block">
+    <div class="intro-block-title">Prepared by</div>
+    <div class="intro-block-text">Dr. Oudho Homenauth &amp; Somwattie Pooran-DeSouza. National Agricultural Research and Extension Institute, Agriculture Road, Mon Repos, East Coast Demerara, Guyana.</div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-logo">Pests &amp; Diseases</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showCategory('all', this)">All</button>
+    <button class="nav-tab" onclick="showCategory('fungal', this)">Fungal</button>
+    <button class="nav-tab" onclick="showCategory('bacterial', this)">Bacterial</button>
+    <button class="nav-tab" onclick="showCategory('viral', this)">Viral</button>
+    <button class="nav-tab" onclick="showCategory('nematode', this)">Nematodes</button>
+    <button class="nav-tab" onclick="showCategory('physiological', this)">Disorders</button>
+    <button class="nav-tab" onclick="showCategory('insect', this)">Insects</button>
+  </div>
+</nav>
+
+<!-- SEARCH -->
+<div class="search-section">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" type="text" placeholder="Search by name, crop, or causative agent…" id="searchInput" oninput="handleSearch()">
+  </div>
+  <div class="search-hint">e.g. "cassava", "Fusarium", "coconut", "whitefly"</div>
+</div>
+
+<!-- CONTENT -->
+<main>
+  <div class="section-header">
+    <span class="section-label">Reference Guide</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title" id="sectionTitle">All Pests &amp; Diseases</h2>
+  <div class="cards-grid" id="cardsGrid"></div>
+  <div class="no-results" id="noResults">
+    <div class="no-results-icon">🌿</div>
+    <div class="no-results-text">No results found. Try a different search.</div>
+  </div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-top">
+      <div class="modal-badge" id="modalBadge"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-info-grid">
+        <div class="modal-info-block">
+          <div class="modal-info-label">Causative Agent</div>
+          <div class="modal-info-value" id="modalAgent"></div>
+        </div>
+        <div class="modal-info-block">
+          <div class="modal-info-label">Crops Affected</div>
+          <div class="modal-info-value" id="modalCrops"></div>
+        </div>
+      </div>
+      <div class="modal-section-title">Management Practices</div>
+      <ul class="modal-management-list" id="modalManagement"></ul>
+    </div>
+  </div>
+</div>
+<!-- DIAGNOSE SECTION -->
+<section class="diagnose-section">
+  <div class="diagnose-inner">
+    <div class="diagnose-header">
+      <div class="section-label">AI Powered</div>
+      <h2 class="diagnose-title">Leaf Disease <em>Detector</em></h2>
+      <p class="diagnose-subtitle">Upload a photo of an infected leaf and get instant diagnosis with management recommendations.</p>
+    </div>
+
+    <div class="upload-box" id="uploadBox" onclick="document.getElementById('imageInput').click()">
+      <div class="upload-icon">🌿</div>
+      <div class="upload-text">Click to upload leaf photo</div>
+      <div class="upload-hint">Supports JPG, PNG, WEBP</div>
+      <input type="file" id="imageInput" accept="image/*" style="display:none" onchange="handleImageUpload(event)">
+    </div>
+
+    <div class="preview-box" id="previewBox" style="display:none">
+      <img id="previewImg" src="" alt="Uploaded leaf">
+      <button class="remove-btn" onclick="removeImage()">✕ Remove</button>
+    </div>
+
+    <button class="diagnose-btn" id="diagnoseBtn" onclick="diagnoseImage()" style="display:none">
+      🔍 Diagnose Disease
+    </button>
+
+    <div class="diagnose-loading" id="diagnoseLoading" style="display:none">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Analysing leaf...</div>
+    </div>
+
+    <div class="diagnose-result" id="diagnoseResult" style="display:none">
+      <div class="result-header">
+        <div class="result-badge">Disease Detected</div>
+        <div class="result-name" id="resultName"></div>
+        <div class="result-confidence" id="resultConfidence"></div>
+      </div>
+      <div class="result-body">
+        <div class="result-info-grid">
+          <div class="result-info-block">
+            <div class="result-info-label">Causative Agent</div>
+            <div class="result-info-value" id="resultAgent"></div>
+          </div>
+          <div class="result-info-block">
+            <div class="result-info-label">Crops Affected</div>
+            <div class="result-info-value" id="resultCrops"></div>
+          </div>
+        </div>
+        <div class="result-mgmt-title">Management Practices</div>
+        <ul class="result-mgmt-list" id="resultManagement"></ul>
+      </div>
+    </div>
+
+    <div class="diagnose-error" id="diagnoseError" style="display:none">
+      <div class="error-icon">⚠️</div>
+      <div class="error-text" id="errorText"></div>
+    </div>
+
+  </div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <p>
+    <strong>A Pictorial Guide to Insects, Pests &amp; Diseases</strong><br>
+    © 2019 National Agricultural Research and Extension Institute (NAREI)<br>
+    Agriculture Road, Mon Repos, East Coast Demerara, Guyana<br>
+    Prepared by Dr. Oudho Homenauth &amp; Somwattie Pooran-DeSouza
+  </p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
