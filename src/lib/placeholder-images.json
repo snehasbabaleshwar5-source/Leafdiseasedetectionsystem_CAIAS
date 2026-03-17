@@ -1,3 +1,16 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "leaf-healthy",
+      "description": "A healthy green leaf",
+      "imageUrl": "https://picsum.photos/seed/leaf-healthy/800/600",
+      "imageHint": "healthy leaf"
+    },
+    {
+      "id": "leaf-rust",
+      "description": "A leaf with rust disease",
+      "imageUrl": "https://picsum.photos/seed/leaf-rust/800/600",
+      "imageHint": "rust leaf"
+    }
+  ]
 }
